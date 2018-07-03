@@ -20,14 +20,14 @@ if ( sizeof($request_array['events']) > 0 )
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
-    $reply_message = 'ระบบได้รับข้อความ ('.$text.') ของคุณแล้ว';
+    $reply_message = '1.ระบบได้รับข้อความ ('.$text.') ของคุณแล้ว';
    }
    else
-    $reply_message = 'ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
+    $reply_message = '2.ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
   
   }
   else
-   $reply_message = 'ระบบได้รับ Event '.ucfirst($event['type']).' ของคุณแล้ว';
+   $reply_message = '3.ระบบได้รับ Event '.ucfirst($event['type']).' ของคุณแล้ว';
  
   if( strlen($reply_message) > 0 )
   {
