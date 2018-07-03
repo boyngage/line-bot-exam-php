@@ -1,6 +1,5 @@
 <?php
 
-$webservice = new SoapClient("http://61.19.22.184/doctor/doctor.asmx?wsdl");
 
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = 'kyr6zlGyYJ/qCsTnBkEn5QmJeHxcEoWqji8u7yVCo2exbAitbRoXKKYSAn8LbVxi4So88Gz5uQYrfJLzj0HecagPmj6sGlex5nG+rOgwQIPjjm5yjkmwCBhmag7gYGEL3xXQmNLKeJcX4pQHHb3M3AdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
@@ -22,24 +21,7 @@ if ( sizeof($request_array['events']) > 0 )
    if( $event['message']['type'] == 'text' )
    {
     //$text = $event['message']['text'];
-
-       
-        $params = array(
-            'id_department' => $event['message']['text']
-        );
-        $data = $webservice->DoctorSchedule($params);
-        $mydata = json_decode($data->DoctorScheduleResult,true);
-        if(count($mydata) == 0)
-        {
-            $txt = "ไม่ข้อมูล";
-        }
-        else
-        {
-            foreach ($mydata as $value) {
-                $txt = $value['meaning'];
-            }
-        }
-        $reply_message = $txt;
+        $reply_message = $event['message']['text'];
    }
    else
    {
@@ -70,16 +52,20 @@ echo "OK";
 
 function send_reply_message($url, $post_header, $post_body)
 {
- $ch = curl_init($url);
- curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
- curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
- curl_setopt($ch, CURLOPT_HTTPHEADER, $post_header);
- curl_setopt($ch, CURLOPT_POSTFIELDS, $post_body);
- curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
- $result = curl_exec($ch);
- curl_close($ch);
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_PROXY, 'velodrome.usefixie.com:80');
+    curl_setopt($ch, CURLOPT_PROXYUSERPWD, 'fixie:wkPhrly3DVe1Bd7');
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $post_header);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $post_body);
+    curl_setopt($ch, CURLOPT_PROXY, $proxy);
+    curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyauth);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+    $result = curl_exec($ch);
+    curl_close($ch);
 
- return $result;
+    return $result;
 }
 
 ?>
