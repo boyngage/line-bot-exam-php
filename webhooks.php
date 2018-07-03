@@ -3,6 +3,7 @@
 require "vendor/autoload.php";
 require_once('vendor/linecorp/line-bot-sdk/line-bot-sdk-tiny/LINEBotTiny.php');
 
+$channelSecret = '07b897fa6316dc6264f7ea25175c0324';
 $access_token = 'kyr6zlGyYJ/qCsTnBkEn5QmJeHxcEoWqji8u7yVCo2exbAitbRoXKKYSAn8LbVxi4So88Gz5uQYrfJLzj0HecagPmj6sGlex5nG+rOgwQIPjjm5yjkmwCBhmag7gYGEL3xXQmNLKeJcX4pQHHb3M3AdB04t89/1O/w1cDnyilFU=';
 
 // Get POST body content
@@ -44,7 +45,7 @@ if (!is_null($events['events'])) {
 			$result = curl_exec($ch);
 			curl_close($ch);
             //echo $result . "\r\n";
-			 $channelSecret = '335ff1c117bcb003169d73477f504b77';
+			 
 			 $idPush = 'xxxxxx';
 			 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 			 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
