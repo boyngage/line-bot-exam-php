@@ -43,17 +43,15 @@ if (!is_null($events['events'])) {
 			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 			$result = curl_exec($ch);
 			curl_close($ch);
-
             //echo $result . "\r\n";
-            
-            $channelSecret = '335ff1c117bcb003169d73477f504b77';
-            $idPush = $result;
-            $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
-            $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
-            $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello world');
-            $response = $bot->pushMessage($idPush, $textMessageBuilder);
+			 $channelSecret = '335ff1c117bcb003169d73477f504b77';
+			 $idPush = $result;
+			 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
+			 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
+			 $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello world');
+			 $response = $bot->pushMessage($idPush, $textMessageBuilder);
 
-            echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+			 echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 
 		}
 	}
