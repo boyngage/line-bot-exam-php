@@ -21,23 +21,23 @@ if ( sizeof($request_array['events']) > 0 )
    {
     //$text = $event['message']['text'];
 
-        $client = new SoapClient("http://61.19.22.184/doctor/doctor.asmx?wsdl");
-        $params = array(
-            'id_department' => intval($event['message']['text'])
-        );
-        $data = $client->DoctorSchedule($params);
-        $mydata = json_decode($data->DoctorScheduleResult,true);
-        if(count($mydata) == 0)
-        {
-            $txt = "ไม่ข้อมูล";
-        }
-        else
-        {
-            foreach ($mydata as $value) {
-                $txt = $value['meaning'];
-            }
-        }
-        $reply_message = $txt;
+        // $client = new SoapClient("http://61.19.22.184/doctor/doctor.asmx?wsdl");
+        // $params = array(
+        //     'id_department' => intval($event['message']['text'])
+        // );
+        // $data = $client->DoctorSchedule($params);
+        // $mydata = json_decode($data->DoctorScheduleResult,true);
+        // if(count($mydata) == 0)
+        // {
+        //     $txt = "ไม่ข้อมูล";
+        // }
+        // else
+        // {
+        //     foreach ($mydata as $value) {
+        //         $txt = $value['meaning'];
+        //     }
+        // }
+        $reply_message = $event['message']['text'];
    }
    else
     $reply_message = '2.ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
