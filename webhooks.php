@@ -46,7 +46,7 @@ if (!is_null($events['events'])) {
 			curl_close($ch);
             //echo $result . "\r\n";
 			 
-			 $idPush = 'xxxxxx';
+			 $idPush = $result;
 			 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 			 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 			 $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello world');
