@@ -1,5 +1,7 @@
 <?php
 
+$webservice = new SoapClient("http://61.19.22.184/doctor/doctor.asmx?wsdl");
+
 $API_URL = 'https://api.line.me/v2/bot/message/reply';
 $ACCESS_TOKEN = 'kyr6zlGyYJ/qCsTnBkEn5QmJeHxcEoWqji8u7yVCo2exbAitbRoXKKYSAn8LbVxi4So88Gz5uQYrfJLzj0HecagPmj6sGlex5nG+rOgwQIPjjm5yjkmwCBhmag7gYGEL3xXQmNLKeJcX4pQHHb3M3AdB04t89/1O/w1cDnyilFU='; // Access Token ค่าที่เราสร้างขึ้น
 $POST_HEADER = array('Content-Type: application/json', 'Authorization: Bearer ' . $ACCESS_TOKEN);
@@ -21,11 +23,11 @@ if ( sizeof($request_array['events']) > 0 )
    {
     //$text = $event['message']['text'];
 
-        $client = new SoapClient("http://61.19.22.184/doctor/doctor.asmx?wsdl");
+       
         $params = array(
-            'id_department' => intval($event['message']['text'])
+            'id_department' => $event['message']['text']
         );
-        $data = $client->DoctorSchedule($params);
+        $data = $webservice->DoctorSchedule($params);
         $mydata = json_decode($data->DoctorScheduleResult,true);
         if(count($mydata) == 0)
         {
