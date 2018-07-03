@@ -50,7 +50,7 @@ if (!is_null($events['events'])) {
 			 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 			 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 			 $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('hello world');
-			 $response = $bot->pushMessage('U2689a511d9d51e000b9f9e852d95649b', $textMessageBuilder);
+			 $response = $bot->pushMessage($idPush, $textMessageBuilder);
 
 			 echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 
