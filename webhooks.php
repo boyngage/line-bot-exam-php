@@ -20,7 +20,27 @@ if ( sizeof($request_array['events']) > 0 )
    if( $event['message']['type'] == 'text' )
    {
     $text = $event['message']['text'];
-    $reply_message = '1.ระบบได้รับข้อความ ('.$text.') ของคุณแล้ว';
+
+    $client = new SoapClient("http://61.19.22.184/doctor/doctor.asmx?wsdl");
+    $params = array(
+        'id_department' => intval($_GET['id'])
+    );
+	$data = $client->DoctorSchedule($params);
+	$mydata = json_decode($data->DoctorScheduleResult,true);
+	if(count($mydata) == 0)
+	{
+		$text = "ไม่ข้อมูล";
+    }
+    else
+    {
+        foreach ($mydata as $value) {
+            $text = $value['meaning'];
+        }
+    }
+
+
+
+    $reply_message = $text;
    }
    else
     $reply_message = '2.ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
