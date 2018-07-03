@@ -1,2 +1,2 @@
 <?php // callback.php
-echo 'budhosp';
+echo '<pre>',print_r($_POST),'</pre>';
