@@ -24,23 +24,15 @@ if ( sizeof($request_array['events']) > 0 )
         //$reply_message = $event['message']['text'];
         $reply_message = intval($event['message']['text']) + 2;
    }
-   elseif($event['message']['type'] == 'Image') //รูปภาพ
-   {
-        $reply_message = '2.ระบบได้รับรูปภาพ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
-   }
-   elseif($event['message']['type'] == 'Sticker') //สติ๊กเกอร์
-   {
-        $reply_message = '3.ระบบได้รับสติ๊กเกอร์ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
-   }
    else
    {
-        $reply_message = '4.ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
+        $reply_message = '2.ระบบได้รับ '.ucfirst($event['message']['type']).' ของคุณแล้ว';
    }
     
   
   }
   else
-   $reply_message = '4.ระบบได้รับ Event '.ucfirst($event['type']).' ของคุณแล้ว';
+   $reply_message = '3.ระบบได้รับ Event '.ucfirst($event['type']).' ของคุณแล้ว';
  
   if( strlen($reply_message) > 0 )
   {
