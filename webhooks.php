@@ -21,7 +21,8 @@ if ( sizeof($request_array['events']) > 0 )
    if( $event['message']['type'] == 'text' )
    {
     //$text = $event['message']['text'];
-        $reply_message = $event['message']['text'];
+       //$reply_message = $event['message']['text'];
+        $reply_message = intval($event['message']['text']) + 2;
    }
    else
    {
